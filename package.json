@@ -13,7 +13,7 @@
     "url": "git+https://github.com/AlexGert42/lib_react_component.git" 
   },
   "types": "dist/index.d.ts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "scripts": {
     "rollup": "rollup -c"

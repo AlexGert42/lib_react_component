@@ -33,7 +33,7 @@ module.exports =  [
       }),
       postcss({
         extract: 'styles.css',
-        modules: true,
+        modules: {},
         use: ['sass'],
         minimize: true
       }),
@@ -44,7 +44,7 @@ module.exports =  [
   {
     input: 'dist/esm/types/index.d.ts',
     output: [{ file: packageJson.types, format: 'esm' }],
-    external: [/\.(css|scss)$/],
+    external: [/\.(css|scss|sass)$/],
     plugins: [dts.default()]
   }
 ];
