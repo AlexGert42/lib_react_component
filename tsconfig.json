@@ -21,8 +21,5 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strictNullChecks": false
-  },
-  "include": [
-    "src"
-  ]
+  }
 }

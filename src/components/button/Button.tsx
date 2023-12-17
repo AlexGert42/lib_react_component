@@ -2,8 +2,6 @@
 import stls from './Button.module.sass'
 
 
-
-
 export interface ButtonProps {
     label: string;
 }

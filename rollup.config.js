@@ -15,12 +15,12 @@ module.exports =  [
       {
         file: packageJson.module,
         format: 'cjs',
-        sourcemap: true,
+     
       },
       {
         file: packageJson.main,
         format: 'esm',
-        sourcemap: true,
+    
       }
     ],
     external: ['react'],
@@ -32,7 +32,7 @@ module.exports =  [
         exclude: ['**/*.stories.tsx']
       }),
       postcss({
-        extract: 'index.css',
+        extract: 'styles.css',
         modules: true,
         use: ['sass'],
         minimize: true
