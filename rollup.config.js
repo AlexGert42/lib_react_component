@@ -32,9 +32,10 @@ module.exports =  [
         exclude: ['**/*.stories.tsx']
       }),
       postcss({
-        extract: 'styles.css',
+        // extract: 'styles.css',
         modules: {},
         use: ['sass'],
+        extract: false,
         minimize: true
       }),
       terser(),
