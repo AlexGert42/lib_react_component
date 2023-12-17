@@ -6,25 +6,35 @@ const packageJson = require("./package.json");
 const terser = require('@rollup/plugin-terser')
 const postcss = require('rollup-plugin-postcss')
 const sass = require('rollup-plugin-sass')
+const peerDepsExternal = require('rollup-plugin-peer-deps-external')
+
 
 
 module.exports =  [
   {
     input: "src/index.ts",
     output: [
-      {
-        file: packageJson.module,
-        format: 'cjs',
+      // {
+      //   file: packageJson.module,
+      //   format: 'cjs',
      
-      },
-      {
-        file: packageJson.main,
-        format: 'esm',
+      // },
+      // {
+      //   file: packageJson.main,
+      //   format: 'esm',
     
-      }
+      // },
+      {
+        name: packageJson.module,
+        sourcemap: true,
+        file: packageJson.main,
+        format: 'umd',
+        globals: { react: 'React' },
+      },
     ],
     external: ['react'],
     plugins: [
+      peerDepsExternal(),
       resolve(),
       commonjs(),
       typescript({
@@ -32,15 +42,19 @@ module.exports =  [
         exclude: ['**/*.stories.tsx']
       }),
       postcss({
-        // extract: 'styles.css',
-        modules: {},
-        use: ['sass'],
         extract: false,
-        minimize: true
+        modules: true,
+        use: ['sass'],
+        // extract: 'styles.css',
+        // modules: {},
+        // use: ['sass'],
+        // extract: false,
+        // minimize: true
       }),
       terser(),
       sass()
-    ]
+    ],
+    external: ['react', 'react-dom'],
   },
   {
     input: 'dist/esm/types/index.d.ts',

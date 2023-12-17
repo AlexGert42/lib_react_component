@@ -1,5 +1,6 @@
 {
   "name": "@AlexGert42/lib_react_component",
+  "version": "1.0.7",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/lib_react_component"
   },
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/AlexGert42/lib_react_component.git"
   },
   "types": "dist/index.d.ts",
-  "version": "1.0.6",
   "description": "",
   "scripts": {
     "rollup": "rollup -c"
@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "rollup": "^4.9.1",
     "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-sass": "^1.12.21",
     "tslib": "^2.6.2",
