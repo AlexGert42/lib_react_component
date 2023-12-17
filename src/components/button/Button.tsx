@@ -1,8 +1,13 @@
-import React from "react";
+
+import stls from './Button.module.sass'
+
+
+
+
 export interface ButtonProps {
     label: string;
 }
 const Button = (props: ButtonProps) => {
-    return <button>{props.label}</button>;
+    return <button className={stls.button}>{props.label}</button>;
 };
 export default Button;

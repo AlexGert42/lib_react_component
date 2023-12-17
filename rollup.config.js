@@ -3,31 +3,48 @@ const commonjs = require("@rollup/plugin-commonjs")
 const typescript = require("@rollup/plugin-typescript")
 const dts = require("rollup-plugin-dts")
 const packageJson = require("./package.json");
+const terser = require('@rollup/plugin-terser')
+const postcss = require('rollup-plugin-postcss')
+const sass = require('rollup-plugin-sass')
+
 
 module.exports =  [
   {
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main,
-        format: "cjs",
+        file: packageJson.module,
+        format: 'cjs',
         sourcemap: true,
       },
       {
-        file: packageJson.module,
-        format: "esm",
+        file: packageJson.main,
+        format: 'esm',
         sourcemap: true,
-      },
+      }
     ],
+    external: ['react'],
     plugins: [
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
-    ],
+      typescript({
+        tsconfig: './tsconfig.json',
+        exclude: ['**/*.stories.tsx']
+      }),
+      postcss({
+        extract: 'index.css',
+        modules: true,
+        use: ['sass'],
+        minimize: true
+      }),
+      terser(),
+      sass()
+    ]
   },
   {
-    input: "dist/esm/types/index.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "esm" }],
-    plugins: [dts.default()],
-  },
+    input: 'dist/esm/types/index.d.ts',
+    output: [{ file: packageJson.types, format: 'esm' }],
+    external: [/\.(css|scss)$/],
+    plugins: [dts.default()]
+  }
 ];
